@@ -1,5 +1,7 @@
-class Item < ActiveRecore::Base
-  belongs_to :store
+class Item < ActiveRecord::Base
+  has_many :list_items
+  has_many :lists, :through => :list_items
+  has_many :users, :through => :lists
 
   def slug
     username.downcase.gsub(" ","-")

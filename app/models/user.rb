@@ -1,5 +1,6 @@
-class User < ActiveRecore::Base
-  has_many :tweets
+class User < ActiveRecord::Base
+  has_many :lists
+  has_many :items, :through => :lists
   has_secure_password
 
   def slug
