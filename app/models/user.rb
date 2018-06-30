@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  include slug
+  include Slug
 
   has_many :lists
   has_many :items, :through => :lists

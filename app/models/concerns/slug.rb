@@ -1,4 +1,4 @@
-class Slug
+module Slug
   def slug(name)
     name.downcase.gsub(" ","-")
   end

@@ -1,6 +1,6 @@
 class ListItems < ActiveRecord::Base
-  include slug
-  
+  include Slug
+
   belongs_to :list
   belongs_to :item
 end
