@@ -14,15 +14,15 @@
 ActiveRecord::Schema.define(version: 20180628062657) do
 
   create_table "items", force: :cascade do |t|
-    t.string  "item_name"
-    t.string  "store"
-    t.float   "price"
-    t.integer "quantity"
+    t.string "item_name"
   end
 
   create_table "list_items", force: :cascade do |t|
     t.integer "list_id"
     t.integer "item_id"
+    t.string  "store"
+    t.float   "price"
+    t.integer "quantity"
   end
 
   create_table "lists", force: :cascade do |t|
