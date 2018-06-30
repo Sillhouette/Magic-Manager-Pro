@@ -1,5 +1,6 @@
 class ListItems < ActiveRecord::Base
-  include Slug
+  include Slugable::InstanceMethods
+  extend Slugable::ClassMethods
 
   belongs_to :list
   belongs_to :item

@@ -1,5 +1,6 @@
 class List < ActiveRecord::Base
-  include Slug
+  include Slugable::InstanceMethods
+  extend Slugable::ClassMethods
 
   belongs_to :user
   has_many :list_items

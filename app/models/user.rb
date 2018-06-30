@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
-  include Slug
+  include Slugable::InstanceMethods
+  extend Slugable::ClassMethods
 
   has_many :lists
   has_many :items, :through => :lists
