@@ -1,0 +1,18 @@
+<h3>Create a New Deck: </h3>
+
+<form action="/decks/new" method="POST">
+  <p>Deck Name: <input type="text" name="name" placeholder="Deck Name"></p>
+
+<h4>Format:</h4>
+  <%Deck.formats.each_with_index do |format, index|%>
+    <%if index % 4 == 0 && index != 0%>
+      </br></br>
+    <%end%>
+    <input type="radio" name="deck[format]" value="<%=format%>" id="<%=format%>" margin="10px"> <%="#{format}\t"%> </input>
+  <%end%>
+
+  </br>
+  </br>
+
+  <input type="submit" value="Create Deck">
+</form>

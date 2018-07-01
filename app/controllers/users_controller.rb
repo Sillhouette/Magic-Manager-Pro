@@ -3,7 +3,7 @@ class UsersController < ApplicationController
     if !logged_in?
       erb :'users/create_user'
     else
-      redirect '/decks'
+      redirect "/users/#{@user.slug}"
     end
   end
 
@@ -12,7 +12,7 @@ class UsersController < ApplicationController
       @user = User.new(:name => params[:username], :password => params[:password], :dci_number => params[:dci_number])
       if @user.save && params[:username] != ""
         session[:user_id] = @user.id
-        redirect '/decks'
+        redirect "/users/#{@user.slug}"
       else
         redirect "/signup"
       end
@@ -25,7 +25,7 @@ class UsersController < ApplicationController
     if !logged_in?
       erb :'/users/login'
     else
-      redirect '/decks'
+      redirect '/show'
     end
   end
 
@@ -33,8 +33,8 @@ class UsersController < ApplicationController
     @user = User.find_by(:name => params[:username])
     if @user && @user.authenticate(params[:password])
 			session[:user_id] = @user.id
-      @this_user = current_user
-      redirect '/decks'
+      #@this_user = current_user
+      redirect "/users/#{@user.slug}"
     else
       redirect "/login"
     end
@@ -50,7 +50,6 @@ class UsersController < ApplicationController
   end
 
   get '/users/:slug' do
-    binding.pry
     @user = User.find_by_slug(params[:slug])
     erb :'/users/show'
   end

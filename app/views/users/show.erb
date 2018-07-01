@@ -1,3 +1,15 @@
-<% @user.decks.each do |deck| %>
-  <%=deck.name%>
-<% end %>
+<h3><%=@user.name.titlecase%>: </h3>
+
+<form action="/decks/new" method="get">
+  <h4 style="display: inline-block">Decks:</h4> <input type="submit" value="Create New Deck"/>
+</form>
+  <%#@user.decks.each do |deck| %>
+    <%#=#deck.name%>
+  <%#end %>
+
+<form action="/cards/new" method="get">
+  <h4 style="display: inline-block">Cards:</h4> <input type="submit" value="Create New Card"/>
+</form>
+  <%# @user.magic_cards.each do |card| %>
+    <%#=#card.name%>
+  <%#end %>
