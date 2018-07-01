@@ -6,7 +6,7 @@ end
 
 use Rack::MethodOverride
 
-use ListsController
-use ItemsController
+use DecksController
+use CardsController
 use UsersController
 run ApplicationController

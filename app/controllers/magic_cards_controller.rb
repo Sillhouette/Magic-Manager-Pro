@@ -1,0 +1,3 @@
+class MagicCardsController < ApplicationController
+
+end

@@ -1,9 +1,10 @@
-class Card < ActiveRecord::Base
+#require_relative './concerns/slugable.rb'
+class MagicCard < ActiveRecord::Base
   include Slugable::InstanceMethods
   extend Slugable::ClassMethods
 
   belongs_to :deck
-  belings_to :user
+  belongs_to :user
 
   #t.integer :deck_id - program defined
   #t.integer :user_id - program defined
