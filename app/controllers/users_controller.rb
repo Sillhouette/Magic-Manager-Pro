@@ -8,10 +8,14 @@ class UsersController < ApplicationController
   end
 
   post "/signup" do
-    @user = User.new(:username => params[:username], :password => params[:password])
-    if @user.save && params[:username] != ""
-      session[:user_id] = @user.id
-      redirect '/decks'
+    if params[:password] == params[:confirm_password]
+      @user = User.new(:name => params[:username], :password => params[:password], :dci_number => params[:dci_number])
+      if @user.save && params[:username] != ""
+        session[:user_id] = @user.id
+        redirect '/decks'
+      else
+        redirect "/signup"
+      end
     else
       redirect "/signup"
     end
@@ -26,7 +30,7 @@ class UsersController < ApplicationController
   end
 
   post '/login' do
-    @user = User.find_by(:username => params[:username])
+    @user = User.find_by(:name => params[:username])
     if @user && @user.authenticate(params[:password])
 			session[:user_id] = @user.id
       @this_user = current_user
