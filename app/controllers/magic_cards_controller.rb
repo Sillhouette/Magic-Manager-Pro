@@ -16,8 +16,7 @@ class MagicCardsController < ApplicationController
   end
 
   post '/cards' do
-    binding.pry
-    if params[:card_name] != ""
+    if params[:card][:name] != ""
      @card = MagicCard.create(params[:card])
      @card.user_id = current_user.id
      @card.save
@@ -38,7 +37,6 @@ class MagicCardsController < ApplicationController
   end
 
   patch '/cards/:slug' do
-    binding.pry
     @card = MagicCard.find_by_slug(params[:slug])
     if params[:card][:name] != ""
       @card.update(params[:card])
@@ -58,7 +56,7 @@ class MagicCardsController < ApplicationController
         @card.delete
         redirect '/cards'
       else
-        "/tweets/#{@tweet.id}"
+        "/cards/#{@card.slug}"
       end
     else
       redirect '/login'

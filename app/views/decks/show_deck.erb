@@ -1,8 +1,26 @@
-<form action="/decks/:slug/show" method="GET">
-  <fieldset>
-    <legend><h1><%="#{@deck.name}"%>:</h1></legend>
-      <p>Format: <%="#{@deck.format}"%></p>
+<fieldset>
+  <legend><h1><%="#{@deck.name}"%>:</h1></legend>
 
+  <form action="/decks/:slug/show" method="GET">
 
-      
-</form>
+    Format: <%="#{@deck.format}"%>
+
+    <ul>
+      <%@deck.magic_cards.each do |card| %>
+        <%="<li>#{card.name}</li>"%>
+      <%end%>
+    </ul>
+  </form>
+
+  <form method="get" action="/decks/<%=@deck.slug%>/edit">
+      <input id="hidden" type="hidden" name="_method" value="edit">
+
+    <input type="submit" value="Edit Deck">
+  </form>
+
+  <form method="post" action="/decks/<%=@deck.slug%>/delete">
+      <input id="hidden" type="hidden" name="_method" value="delete">
+
+    <input type="submit" value="Delete Deck">
+  </form>
+</fieldset>

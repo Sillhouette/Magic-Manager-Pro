@@ -12,14 +12,14 @@
   <p>Rarity: <%=@card.rarity%></p>
   <p>Set: <%=@card.set%></p>
 
-<form method="post" action="/magic_cards/<%=@card.id%>/delete">
-    <input id="hidden" type="hidden" name="_method" value="delete">
-
-  <input type="submit" value="Delete Card">
-</form>
-
 <form method="get" action="/cards/<%=@card.slug%>/edit">
     <input id="hidden" type="hidden" name="_method" value="edit">
 
   <input type="submit" value="Edit Card">
+</form>
+
+<form method="post" action="/magic_cards/<%=@card.id%>/delete">
+    <input id="hidden" type="hidden" name="_method" value="delete">
+
+  <input type="submit" value="Delete Card">
 </form>
