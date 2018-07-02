@@ -1,5 +1,5 @@
 <h1>Decks: </h1>
 
-<% Deck.all.each do |deck| %>
+<% current_user.decks.all.each do |deck| %>
   <%= deck.name %>
 <% end %>

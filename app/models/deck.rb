@@ -5,6 +5,8 @@ class Deck < ActiveRecord::Base
   belongs_to :user
   has_many :cards
 
+  attr_accessor :sideboard
+
   FORMATS = [ "Standard", "Modern", "Legacy", "Vintage", "Sealed Deck", "Booster Draft", "Rochester Draft",
               "Two-Headed Giant", "Pauper", "Peasant", "Frontier", "Rainbow Stairwell", "Singleton", "Tribal Wars",
               "Cube Draft", "Back Draft", "Reject Rare Draft", "Type 4", "Free-For-All", "Star", "Assassin", "Emperor",
@@ -14,6 +16,48 @@ class Deck < ActiveRecord::Base
   def self.formats
     FORMATS
   end
+
+  def set_counts
+    @creature_count = count_creatures
+    @instant_sorcery_count = count_instant_sorcery
+    @land_count = count_lands
+    @artifact_enchantment_count = count_artifact_enchantment
+    @planeswalker_count = count_planeswalker
+    @sideboard_count = count_sideboard
+  end
+
+  def count_cards
+    self.cards.size
+  end
+
+  def count_creatures
+    self.cards.count{|card| card.type.downcase == "creature"}
+  end
+
+  def count_instant_sorcery
+    self.cards.count{|card| card.type.downcase == "instant" || card.type == "sorcery"}
+  end
+
+  def count_lands
+    self.cards.count{|card| card.type.downcase == "land"}
+  end
+
+  def count_artifact_enchantment
+    self.cards.count{|card| card.type.downcase == "artifact" || card.type.downcase == "enchantment"}
+  end
+
+  def count_planeswalker
+    self.cards.count{|card| card.type.downcase == "planeswalker"}
+  end
+
+  def add_to_sideboard(card)
+    @sideboard << card
+  end
+
+  def count_sideboard
+    @sideboard.size
+  end
+
   #t.string :name - User defined
   #t.string :format - Single Choice between:
       #Standard, Modern, Legacy, Vintage, Sealed Deck, Booster Draft, Rochester Draft,

@@ -14,4 +14,9 @@ class MagicCardsController < ApplicationController
       redirect '/login'
     end
   end
+
+  get '/cards/:slug' do
+    @card = Magic_Card.find_by_slug(params[:slug])
+    erb :'/cards/show_magic_card'
+  end
 end

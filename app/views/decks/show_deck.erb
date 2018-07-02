@@ -1,1 +1,5 @@
-#View all lists /lists
+<form action="/decks/:slug/show" method="GET">
+  <fieldset>
+    <legend><h1><%="#{@deck.name}"%>:</h1></legend>
+      <p>Format: <%="#{@deck.format}"%></p>
+      

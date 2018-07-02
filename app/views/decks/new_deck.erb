@@ -16,9 +16,9 @@
 
       <fieldset>
         <legend>Choose from your cards:</legend>
-          <%#current_user.cards.each do |card|%>
-            <input type="checkbox" name="card" value="<%#=card.name%>"> <%#="#{card.name}"%> </input>
-          <%#end%>
+          <%current_user.cards.each do |card|%>
+            <input type="checkbox" name="card" value="<%#=card.name%>"> <%="#{card.name}"%> </input>
+          <%end%>
       </fieldset>
 
     </br></br>

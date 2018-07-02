@@ -2,14 +2,15 @@
 
 <form action="/decks/new" method="get">
   <h4 style="display: inline-block">Decks:</h4> <input type="submit" value="Create New Deck"/>
+</br>
+  <%@user.decks.each do |deck| %>
+    <%=deck.name%></br>
+  <%end %>
 </form>
-  <%#@user.decks.each do |deck| %>
-    <%#=#deck.name%>
-  <%#end %>
 
 <form action="/cards/new" method="get">
   <h4 style="display: inline-block">Cards:</h4> <input type="submit" value="Create New Card"/>
 </form>
-  <%# @user.magic_cards.each do |card| %>
-    <%#=#card.name%>
-  <%#end %>
+  <% @user.magic_cards.each do |card| %>
+    <%=card.name%>
+  <%end %>

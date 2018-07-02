@@ -15,9 +15,9 @@
 
       <fieldset>
         <legend>Choose from your cards:</legend>
-          <%#current_user.cards.each do |card|%>
-            <input type="checkbox" name="card" value="<%#=card.name%>" <%='checked' if @deck.cards.include?(card) %>> <%#="#{card.name}"%> </input>
-          <%#end%>
+          <%current_user.cards.each do |card|%>
+            <input type="checkbox" name="card" value="<%#=card.name%>" <%='checked' if @deck.cards.include?(card) %>> <%="#{card.name}"%> </input>
+          <%end%>
       </fieldset>
 
       <form action="/decks/add_card" method="POST">

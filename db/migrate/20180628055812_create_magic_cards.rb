@@ -15,8 +15,8 @@ class CreateMagicCards < ActiveRecord::Migration
       t.float :value
       t.integer :quantity
       t.string :set
-      t.boolean :side_board_option
-      t.boolean :main_board_option
+      t.boolean :side_board_option #Should be in the join table
+      t.boolean :main_board_option #should be in the join table
       t.boolean :standard
       t.boolean :modern
       t.boolean :legacy

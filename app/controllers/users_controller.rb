@@ -25,7 +25,7 @@ class UsersController < ApplicationController
     if !logged_in?
       erb :'/users/login'
     else
-      redirect '/show'
+      redirect "/users/#{current_user.name}"
     end
   end
 
