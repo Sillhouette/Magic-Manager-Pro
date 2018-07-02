@@ -3,7 +3,7 @@ class Deck < ActiveRecord::Base
   extend Slugable::ClassMethods
 
   belongs_to :user
-  has_many :cards
+  has_many :cards#, through: :users
 
   attr_accessor :sideboard
 

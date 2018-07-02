@@ -1,5 +1,5 @@
 <h1>Decks: </h1>
 
 <% current_user.decks.all.each do |deck| %>
-  <%= deck.name %>
+  <a href=<%="/decks/#{deck.slug}"%>><%= deck.name %></a></br>
 <% end %>

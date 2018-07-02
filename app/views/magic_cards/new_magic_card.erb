@@ -17,17 +17,17 @@
 
 <h4>Color(s):</h4>
   <%MagicCard.colors.each do |color|%>
-    <input type="checkbox" name="card[color]" value="<%=color%>" id="<%=color%>"> <%="#{color}"%> </input>
+    <input type="radio" name="card[color]" value="<%=color%>" id="<%=color%>"> <%="#{color}"%> </input>
   <%end%>
 
   <h4>Super Type(s):</h4>
     <%MagicCard.super_types.each do |super_type|%>
-      <input type="checkbox" name="card[super_type]" value="<%=super_type%>" id="<%=super_type%>"> <%="#{super_type}"%> </input>
+      <input type="radio" name="card[super_type]" value="<%=super_type%>" id="<%=super_type%>"> <%="#{super_type}"%> </input>
     <%end%>
 
   <h4>Type(s):</h4>
     <%MagicCard.types.each do |type|%>
-      <input type="checkbox" name="card[type]" value="<%=type%>" id="<%=type%>"> <%="#{type}"%> </input>
+      <input type="radio" name="card[type]" value="<%=type%>" id="<%=type%>"> <%="#{type}"%> </input>
     <%end%>
 
   <h4>Rarity:</h4>

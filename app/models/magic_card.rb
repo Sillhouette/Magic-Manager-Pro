@@ -6,7 +6,7 @@ class MagicCard < ActiveRecord::Base
   belongs_to :user
 
   QUALITIES = ["Mint", "Near Mint", "Lightly Played", "Moderately Played", "Heavily Played", "Unknown"]
-  COLORS = ["Red", "Blue", "Green", "Black", "White", "Colorless"]
+  COLORS = ["Red", "Blue", "Green", "Black", "White", "Multicolor", "Colorless"]
   TYPES = ["Land", "Creature", "Artifact", "Enchantment", "Planeswalker", "Sorcery", "Instant", "Equipment", "Vehicle"]
   SUPER_TYPES = ["Basic", "Elite" , "Host" , "Legendary", "Ongoing" , "Snow", "World"]
   RARITIES = ["Common", "Uncommon", "Rare", "Mythic Rare"]

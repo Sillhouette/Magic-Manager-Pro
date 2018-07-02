@@ -6,24 +6,9 @@
   <p>Quantity: <%=@card.quantity%></p>
   <p>Quality: <%=@card.quality%></p>
   <p>Foil: <%=@card.foil%></p>
-  <p>Color(s):
-  <%@card.color.each do |color|%>
-    <%="#{color}, "%>
-  <%end%>
-  </p>
-
-  <p>Super Type(s):
-  <%@card.super_type.each do |super_type|%>
-    <%="#{super_type}, "%>
-  <%end%>
-  </p>
-
-  <p>Types(s):
-  <%@card.type.each do |type|%>
-    <%="#{type}, "%>
-  <%end%>
-  </p>
-
+  <p>Color: <%=@card.color%></p>
+  <p>Super Type: <%=@card.super_types%></p>
+  <p>Types:<%=@card.types%></p>
   <p>Rarity: <%=@card.rarity%></p>
   <p>Set: <%=@card.set%></p>
 
@@ -33,7 +18,7 @@
   <input type="submit" value="Delete Card">
 </form>
 
-<form method="post" action="/magic_cards/<%=@card.id%>/edit">
+<form method="get" action="/cards/<%=@card.slug%>/edit">
     <input id="hidden" type="hidden" name="_method" value="edit">
 
   <input type="submit" value="Edit Card">

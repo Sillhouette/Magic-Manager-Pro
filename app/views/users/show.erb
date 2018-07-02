@@ -4,7 +4,7 @@
   <h4 style="display: inline-block">Decks:</h4> <input type="submit" value="Create New Deck"/>
 </br>
   <%@user.decks.each do |deck| %>
-    <%=deck.name%></br>
+    <a href=<%="/decks/#{deck.slug}"%>><%= deck.name %></a>
   <%end %>
 </form>
 
@@ -12,5 +12,5 @@
   <h4 style="display: inline-block">Cards:</h4> <input type="submit" value="Create New Card"/>
 </form>
   <% @user.magic_cards.each do |card| %>
-    <%=card.name%>
-  <%end %>
+    <a href=<%="/cards/#{card.slug}"%>><%=card.name%></a>
+  <%end%>
