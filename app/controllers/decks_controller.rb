@@ -14,4 +14,14 @@ class DecksController < ApplicationController
       redirect '/login'
     end
   end
+
+  post '/decks/new' do
+    if params[:name] != ""
+     @deck = Deck.create(:name => params[:name], :format => params[:format], :user_id => current_user.id)
+     @deck.save
+     redirect '/decks'
+   else
+     redirect '/decks/new'
+   end
+  end
 end

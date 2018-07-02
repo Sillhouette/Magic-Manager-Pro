@@ -1,11 +1,49 @@
-#form to create a new list
+<h3>Create a New Card: </h3>
 
-#loop
+<form action="/magic_cards/new" method="POST">
+  <p>Card Name: <input type="text" name="name" placeholder="Card Name"></p>
+  <p>Manna Cost: <input type="text" name="cost" placeholder="Manna Cost"> Example: 2 Red 1 Colorless = 1RR</p>
+  <p>Value: $<input type="text" name="value" placeholder="Value"></p>
+  <p>Quantity: <input type="number" name="quantity" placeholder="Quantity"></p>
 
-#Form to add items to list
-#create new item with itemname
-#create new list_item with item plus the attribtes for this specific item
+<h4>Quality:</h4>
+  <%MagicCard.qualities.each do |quality|%>
+    <input type="radio" name="card[quality]" value="<%=quality%>" id="<%=quality%>"> <%="#{quality}"%> </input>
+  <%end%>
 
-#submit will refresh this page => items controller
+<h4>Foil:</h4>
+  <input type="radio" name="card[foil]" value=true> <%="Yes"%> </input>
+  <input type="radio" name="card[foil]" value=false> <%="No"%> </input>
 
-#submit button to display this list => lists controller
+<h4>Color(s):</h4>
+  <%MagicCard.colors.each do |color|%>
+    <input type="checkbox" name="card[color]" value="<%=color%>" id="<%=color%>"> <%="#{color}"%> </input>
+  <%end%>
+
+  <h4>Super Type(s):</h4>
+    <%MagicCard.super_types.each do |super_type|%>
+      <input type="checkbox" name="card[super_type]" value="<%=super_type%>" id="<%=super_type%>"> <%="#{super_type}"%> </input>
+    <%end%>
+
+  <h4>Type(s):</h4>
+    <%MagicCard.types.each do |type|%>
+      <input type="checkbox" name="card[type]" value="<%=type%>" id="<%=type%>"> <%="#{type}"%> </input>
+    <%end%>
+
+  <h4>Rarity:</h4>
+    <%MagicCard.rarities.each do |rarity|%>
+      <input type="radio" name="card[rarity]" value="<%=rarity%>" id="<%=rarity%>"> <%="#{rarity}"%> </input>
+    <%end%>
+
+  <h4>Set: </h4>
+  <select>
+    <%MagicCard.sets.each do |set|%>
+    <option value="<%=set%>" name="card[set]" ><%="#{set}"%></option>
+    <%end%>
+  </select>
+
+  </br>
+  </br>
+
+  <input type="submit" value="Create Card">
+</form>

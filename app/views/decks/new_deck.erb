@@ -1,18 +1,81 @@
-<h3>Create a New Deck: </h3>
-
 <form action="/decks/new" method="POST">
-  <p>Deck Name: <input type="text" name="name" placeholder="Deck Name"></p>
+  <fieldset>
+    <legend><h3>Create a New Deck:</h3></legend>
 
-<h4>Format:</h4>
-  <%Deck.formats.each_with_index do |format, index|%>
-    <%if index % 4 == 0 && index != 0%>
-      </br></br>
-    <%end%>
-    <input type="radio" name="deck[format]" value="<%=format%>" id="<%=format%>" margin="10px"> <%="#{format}\t"%> </input>
-  <%end%>
+    <p>Deck Name: <input type="text" name="name" placeholder="Deck Name"></p>
 
-  </br>
-  </br>
+    Format:
+      <select>
+        <%Deck.formats.each do |format|%>
+          <option value="<%=format%>" name="deck[format]" ><%="#{format}"%></option>
+        <%end%>
+      </select>
 
+    </br>
+    </br>
+
+      <fieldset>
+        <legend>Choose from your cards:</legend>
+          <%#current_user.cards.each do |card|%>
+            <input type="checkbox" name="card" value="<%#=card.name%>"> <%#="#{card.name}"%> </input>
+          <%#end%>
+      </fieldset>
+
+      <form action="/decks/add_card" method="POST">
+        <fieldset>
+          <legend>Create a New Card:</legend>
+
+          <h5>Once you create your new card don't forget to add it to your deck with the checkboxes above</h5>
+
+          <p>Card Name: <input type="text" name="name" placeholder="Card Name"></p>
+          <p>Manna Cost: <input type="text" name="cost" placeholder="Manna Cost"> Example: 2 Red 1 Colorless = 1RR</p>
+          <p>Value: $<input type="text" name="value" placeholder="Value"></p>
+          <p>Quantity: <input type="number" name="quantity" placeholder="Quantity"></p>
+
+          <h4>Quality:</h4>
+            <%MagicCard.qualities.each do |quality|%>
+              <input type="radio" name="card[quality]" value="<%=quality%>" id="<%=quality%>"> <%="#{quality}"%> </input>
+            <%end%>
+
+          <h4>Foil:</h4>
+            <input type="radio" name="card[foil]" value=true> <%="Yes"%> </input>
+            <input type="radio" name="card[foil]" value=false> <%="No"%> </input>
+
+          <h4>Color(s):</h4>
+            <%MagicCard.colors.each do |color|%>
+              <input type="checkbox" name="card[color]" value="<%=color%>" id="<%=color%>"> <%="#{color}"%> </input>
+            <%end%>
+
+            <h4>Super Type(s):</h4>
+              <%MagicCard.super_types.each do |super_type|%>
+                <input type="checkbox" name="card[super_type]" value="<%=super_type%>" id="<%=super_type%>"> <%="#{super_type}"%> </input>
+              <%end%>
+
+            <h4>Type(s):</h4>
+              <%MagicCard.types.each do |type|%>
+                <input type="checkbox" name="card[type]" value="<%=type%>" id="<%=type%>"> <%="#{type}"%> </input>
+              <%end%>
+
+            <h4>Rarity:</h4>
+              <%MagicCard.rarities.each do |rarity|%>
+                <input type="radio" name="card[rarity]" value="<%=rarity%>" id="<%=rarity%>"> <%="#{rarity}"%> </input>
+              <%end%>
+
+            <h4>Set: </h4>
+            <select>
+              <%MagicCard.sets.each do |set|%>
+                <option value="<%=set%>" name="card[set]" ><%="#{set}"%></option>
+              <%end%>
+            </select>
+
+            </br>
+            </br>
+
+            <input type="submit" value="Add Card">
+        </fieldset>
+      </form>
+    </br>
   <input type="submit" value="Create Deck">
+
+  </fieldset>
 </form>
