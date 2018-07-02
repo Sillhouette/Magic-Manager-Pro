@@ -1,23 +1,23 @@
 class UsersController < ApplicationController
-  get "/signup" do
+  get("/signup") do
     if !logged_in?
       erb :'users/create_user'
     else
-      redirect "/users/#{@user.slug}"
+      redirect "/users/#{current_user.slug}"
     end
   end
 
-  post "/signup" do
+  post("/signup") do
     if params[:password] == params[:confirm_password]
       @user = User.new(:name => params[:username], :password => params[:password], :dci_number => params[:dci_number])
       if @user.save && params[:username] != ""
         session[:user_id] = @user.id
         redirect "/users/#{@user.slug}"
       else
-        redirect "/signup"
+        erb :'users/create_user'
       end
     else
-      redirect "/signup"
+      erb :'users/create_user'
     end
   end
 
@@ -50,7 +50,11 @@ class UsersController < ApplicationController
   end
 
   get '/users/:slug' do
-    @user = User.find_by_slug(params[:slug])
-    erb :'/users/show'
+    if logged_in?
+      @user = User.find_by_slug(params[:slug])
+      erb :'/users/show'
+    else
+      redirect '/login'
+    end
   end
 end

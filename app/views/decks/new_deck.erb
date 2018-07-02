@@ -1,11 +1,11 @@
-<form action="/decks/new" method="POST">
+<form action="/decks" method="POST">
   <fieldset>
     <legend><h3>Create a New Deck:</h3></legend>
 
     <p>Deck Name: <input type="text" name="deck_name" placeholder="Deck Name"></p>
 
     Format:
-      <select>
+      <select name="deck_format">
         <%Deck.formats.each do |format|%>
           <option value="<%=format%>" name="deck_format" ><%="#{format}"%></option>
         <%end%>
@@ -17,7 +17,7 @@
       <fieldset>
         <legend>Choose from your cards:</legend>
           <%current_user.magic_cards.each do |card|%>
-            <input type="checkbox" name="card" value="<%#=card.name%>"> <%="#{card.name}"%> </input>
+            <input type="checkbox" name="cards[]" value="<%="#{card.id}"%>"> <%="#{card.name}"%> </input>
           <%end%>
       </fieldset>
 

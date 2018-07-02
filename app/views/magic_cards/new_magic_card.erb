@@ -1,10 +1,10 @@
 <h3>Create a New Card: </h3>
 
-<form action="/magic_cards/new" method="POST">
-  <p>Card Name: <input type="text" name="name" placeholder="Card Name"></p>
-  <p>Manna Cost: <input type="text" name="cost" placeholder="Manna Cost"> Example: 2 Red 1 Colorless = 1RR</p>
-  <p>Value: $<input type="text" name="value" placeholder="Value"></p>
-  <p>Quantity: <input type="number" name="quantity" placeholder="Quantity"></p>
+<form action="/cards" method="POST">
+  <p>Card Name: <input type="text" name="card[name]" placeholder="Card Name"></p>
+  <p>Manna Cost: <input type="text" name="card[manna_cost]" placeholder="Manna Cost"> Example: 2 Red 1 Colorless = 1RR</p>
+  <p>Value: $<input type="text" name="card[value]" placeholder="Value"></p>
+  <p>Quantity: <input type="number" name="card[quantity]" placeholder="Quantity"></p>
 
 <h4>Quality:</h4>
   <%MagicCard.qualities.each do |quality|%>
@@ -22,12 +22,12 @@
 
   <h4>Super Type(s):</h4>
     <%MagicCard.super_types.each do |super_type|%>
-      <input type="radio" name="card[super_type]" value="<%=super_type%>" id="<%=super_type%>"> <%="#{super_type}"%> </input>
+      <input type="radio" name="card[super_types]" value="<%=super_type%>" id="<%=super_type%>"> <%="#{super_type}"%> </input>
     <%end%>
 
   <h4>Type(s):</h4>
     <%MagicCard.types.each do |type|%>
-      <input type="radio" name="card[type]" value="<%=type%>" id="<%=type%>"> <%="#{type}"%> </input>
+      <input type="radio" name="card[types]" value="<%=type%>" id="<%=type%>"> <%="#{type}"%> </input>
     <%end%>
 
   <h4>Rarity:</h4>
@@ -36,7 +36,7 @@
     <%end%>
 
   <h4>Set: </h4>
-  <select>
+  <select name="card[set]">
     <%MagicCard.sets.each do |set|%>
     <option value="<%=set%>" name="card[set]" ><%="#{set}"%></option>
     <%end%>

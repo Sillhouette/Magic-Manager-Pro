@@ -2,8 +2,9 @@ class MagicCard < ActiveRecord::Base
   include Slugable::InstanceMethods
   extend Slugable::ClassMethods
 
-  belongs_to :deck
   belongs_to :user
+  has_many :deck_magic_cards, dependent: :destroy
+  has_many :decks, through: :deck_magic_cards
 
   QUALITIES = ["Mint", "Near Mint", "Lightly Played", "Moderately Played", "Heavily Played", "Unknown"]
   COLORS = ["Red", "Blue", "Green", "Black", "White", "Multicolor", "Colorless"]

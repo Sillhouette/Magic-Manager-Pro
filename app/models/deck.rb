@@ -3,7 +3,8 @@ class Deck < ActiveRecord::Base
   extend Slugable::ClassMethods
 
   belongs_to :user
-  has_many :cards#, through: :users
+  has_many :deck_magic_cards, dependent: :destroy
+  has_many :magic_cards, through: :deck_magic_cards
 
   attr_accessor :sideboard
 
@@ -52,6 +53,10 @@ class Deck < ActiveRecord::Base
 
   def add_to_sideboard(card)
     @sideboard << card
+  end
+
+  def add_to_deck(card_name)
+    @cards << card_name
   end
 
   def count_sideboard

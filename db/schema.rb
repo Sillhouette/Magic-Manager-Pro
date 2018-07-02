@@ -11,7 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180628055812) do
+ActiveRecord::Schema.define(version: 20180702161803) do
+
+  create_table "deck_magic_cards", force: :cascade do |t|
+    t.integer "deck_id"
+    t.integer "magic_card_id"
+  end
 
   create_table "decks", force: :cascade do |t|
     t.string  "name"

@@ -15,10 +15,10 @@ class DecksController < ApplicationController
     end
   end
 
-  post '/decks/new' do
-    binding.pry
+  post '/decks' do
     if params[:deck_name] != ""
-     @deck = Deck.create(:name => params[:deck_name], :format => params[:format], :user_id => current_user.id)
+     @deck = Deck.create(:name => params[:deck_name], :format => params[:deck_format], :user_id => current_user.id)
+     @deck.magic_card_ids = params[:cards]
      @deck.save
      redirect '/decks'
    else
