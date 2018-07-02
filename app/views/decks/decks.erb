@@ -1,3 +1,5 @@
-#list of listnames that goes to view list
+<h1>Decks: </h1>
 
-#button to create a list
+<% Deck.all.each do |deck| %>
+  <%= deck.name %>
+<% end %>

@@ -6,14 +6,12 @@
 
     Format:
       <select>
-        <option value="<%=@deck.format%>" name="deck[format]" ><%="#{@deck.format}"%></option>
         <%Deck.formats.each do |format|%>
-          <option value="<%=format%>" name="deck[format]" ><%="#{format}"%></option>
+          <option value="<%=format%>" name="deck[format]" <%='selected' if @deck.format == format %>><%="#{format}"%></option>
         <%end%>
       </select>
 
-    </br>
-    </br>
+    </br></br>
 
       <fieldset>
         <legend>Choose from your cards:</legend>

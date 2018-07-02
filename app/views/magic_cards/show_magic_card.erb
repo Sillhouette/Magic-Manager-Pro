@@ -1,1 +1,40 @@
-#View all lists /lists
+<h1> <%=@card.name%>: </h1>
+
+<form action="/magic_cards/new" method="POST">
+  <p>Manna Cost: <%=@card.manna_cost%></p>
+  <p>Value: $<%=@card.value%></p>
+  <p>Quantity: <%=@card.quantity%></p>
+  <p>Quality: <%=@card.quality%></p>
+  <p>Foil: <%=@card.foil%></p>
+  <p>Color(s):
+  <%@card.color.each do |color|%>
+    <%="#{color}, "%>
+  <%end%>
+  </p>
+
+  <p>Super Type(s):
+  <%@card.super_type.each do |super_type|%>
+    <%="#{super_type}, "%>
+  <%end%>
+  </p>
+
+  <p>Types(s):
+  <%@card.type.each do |type|%>
+    <%="#{type}, "%>
+  <%end%>
+  </p>
+
+  <p>Rarity: <%=@card.rarity%></p>
+  <p>Set: <%=@card.set%></p>
+
+<form method="post" action="/magic_cards/<%=@card.id%>/delete">
+    <input id="hidden" type="hidden" name="_method" value="delete">
+
+  <input type="submit" value="Delete Card">
+</form>
+
+<form method="post" action="/magic_cards/<%=@card.id%>/edit">
+    <input id="hidden" type="hidden" name="_method" value="edit">
+
+  <input type="submit" value="Edit Card">
+</form>

@@ -1,3 +1,5 @@
-#list of listnames that goes to view list
+<h1>Cards: </h1>
 
-#button to create a list
+<% MagicCard.all.each do |card| %>
+  <%= card.name %>
+<% end %>
