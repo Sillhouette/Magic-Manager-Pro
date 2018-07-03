@@ -39,13 +39,21 @@ class DecksController < ApplicationController
 
 
   get '/decks/:slug' do
-    @deck = Deck.find_by_slug(params[:slug])
-    erb :'/decks/show_deck'
+    if logged_in?
+      @deck = Deck.find_by_slug(params[:slug])
+      erb :'/decks/show_deck'
+    else
+      redirect '/login'
+    end
   end
 
   get '/decks/:slug/edit' do
-    @deck = Deck.find_by_slug(params[:slug])
-    erb :'/decks/edit_deck'
+    if logged_in?
+      @deck = Deck.find_by_slug(params[:slug])
+      erb :'/decks/edit_deck'
+    else
+      redirect '/login'
+    end
   end
 
   post '/decks/:slug/edit' do
