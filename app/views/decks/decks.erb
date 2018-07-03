@@ -1,5 +1,11 @@
-<h1>Decks: </h1>
+<form method="get" action="/logout">
+  <input type="submit" value="Logout" style="float: right;">
+</form>
 
-<% current_user.decks.all.each do |deck| %>
-  <a href=<%="/decks/#{deck.slug}"%>><%= deck.name %></a></br>
-<% end %>
+<fieldset>
+  <legend><h2><%=current_user.name.titlecase%>'s Decks:</h2></legend>
+
+  <% current_user.decks.all.each do |deck| %>
+    <a href=<%="/decks/#{deck.slug}"%>><%= deck.name %></a></br>
+  <% end %>
+</fieldset>

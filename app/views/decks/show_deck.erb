@@ -1,13 +1,17 @@
+<form method="get" action="/logout">
+  <input type="submit" value="Logout" style="float: right;">
+</form>
+
 <fieldset>
-  <legend><h1><%="#{@deck.name}"%>:</h1></legend>
+  <legend><h2><%="#{@deck.name.titlecase}"%>:</h2></legend>
 
   <form action="/decks/:slug/show" method="GET">
 
-    Format: <%="#{@deck.format}"%>
+    <h4>Format: <%="#{@deck.format}"%></h4>
 
     <ul>
       <%@deck.magic_cards.each do |card| %>
-        <%="<li>#{card.name}</li>"%>
+        <%="<li>#{card.name.titlecase}</li>"%>
       <%end%>
     </ul>
   </form>

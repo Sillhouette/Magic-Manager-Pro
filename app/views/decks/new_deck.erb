@@ -15,19 +15,18 @@
           <option value="<%=format%>" name="deck_format" ><%="#{format}"%></option>
         <%end%>
       </select>
-    <h4>
+    </h4>
 
-      <fieldset>
-        <legend>Choose from your cards:</legend>
-          <%current_user.magic_cards.each do |card|%>
-            <input type="checkbox" name="cards[]" value="<%="#{card.id}"%>"> <%="#{card.name}"%> </input>
-          <%end%>
-      </fieldset>
+    <fieldset>
+      <legend><h3>Choose from your cards:</h3></legend>
+        <%current_user.magic_cards.each do |card|%>
+          <input type="checkbox" name="cards[]" value="<%="#{card.id}"%>"> <%="#{card.name}"%> </input>
+        <%end%>
+    </fieldset>
 
     </br></br>
 
-  <input type="submit" value="Create Deck">
-
+    <input type="submit" value="Create Deck">
   </fieldset>
 </form>
 
