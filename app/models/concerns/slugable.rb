@@ -1,4 +1,5 @@
 module Slugable
+
   module InstanceMethods
     def slug
       name.downcase.gsub(" ","-")
@@ -10,4 +11,5 @@ module Slugable
       self.all.find{|object| object.slug == slug.downcase}
     end
   end
+  
 end
