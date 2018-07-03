@@ -26,6 +26,18 @@ class DecksController < ApplicationController
    end
   end
 
+  post '/decks/new' do
+    if params[:card][:name] != ""
+     @card = MagicCard.create(params[:card])
+     @card.user_id = current_user.id
+     @card.save
+     erb :'/decks/new_deck'
+   else
+     erb :'/decks/new_deck'
+   end
+  end
+
+
   get '/decks/:slug' do
     @deck = Deck.find_by_slug(params[:slug])
     erb :'/decks/show_deck'

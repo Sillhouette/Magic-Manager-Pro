@@ -50,14 +50,9 @@ class MagicCardsController < ApplicationController
 
   delete '/cards/:slug/delete' do
     @card = MagicCard.find_by_slug(params[:slug])
-    @user = current_user
     if logged_in?
-      if @card.user_id == current_user.id
-        @card.delete
-        redirect '/cards'
-      else
-        "/cards/#{@card.slug}"
-      end
+      @card.delete
+      redirect '/cards'
     else
       redirect '/login'
     end

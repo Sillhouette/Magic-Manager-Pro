@@ -1,6 +1,7 @@
 <h1> <%=@card.name%>: </h1>
 
-<form action="/magic_cards/new" method="POST">
+<form action="/cards/<%=@card.slug%>/edit" method="GET">
+
   <p>Manna Cost: <%=@card.manna_cost%></p>
   <p>Value: $<%=@card.value%></p>
   <p>Quantity: <%=@card.quantity%></p>
@@ -12,14 +13,11 @@
   <p>Rarity: <%=@card.rarity%></p>
   <p>Set: <%=@card.set%></p>
 
-<form method="get" action="/cards/<%=@card.slug%>/edit">
-    <input id="hidden" type="hidden" name="_method" value="edit">
-
   <input type="submit" value="Edit Card">
 </form>
 
-<form method="post" action="/magic_cards/<%=@card.id%>/delete">
+<form method="post" action="/cards/<%=@card.slug%>/delete">
     <input id="hidden" type="hidden" name="_method" value="delete">
 
-  <input type="submit" value="Delete Card">
+  <input type="submit" value="Delete Deck">
 </form>
