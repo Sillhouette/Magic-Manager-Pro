@@ -4,19 +4,23 @@
 
 <fieldset>
   <legend><h2><%=@user.name.titlecase%>: </h2></legend>
-
   <form action="/decks/new" method="get">
-    <h4 style="display: inline-block">Decks:</h4> <input type="submit" value="Create New Deck"/>
-  </br>
+
+    <h4 style="display: inline-block">Decks: <input type="submit" value="Create New Deck"/></h4>
+
+    </br>
+
     <%@user.decks.each do |deck| %>
       <a href=<%="/decks/#{deck.slug}"%>><%= deck.name %></a></br>
     <%end %>
   </form>
 
   <form action="/cards/new" method="get">
-    <h4 style="display: inline-block">Cards:</h4> <input type="submit" value="Create New Card"/>
+    <h4 style="display: inline-block">Cards: <input type="submit" value="Create New Card"/></h4>
   </form>
-    <% @user.magic_cards.each do |card| %>
-      <a href=<%="/cards/#{card.slug}"%>><%=card.name%></a></br>
-    <%end%>
+
+  <% @user.magic_cards.each do |card| %>
+    <a href=<%="/cards/#{card.slug}"%>><%=card.name%></a></br>
+  <%end%>
+
 </fieldset>
