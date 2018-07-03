@@ -1,51 +1,68 @@
-<h3>Edit <%=@card.name%>: </h3>
-
-<form method="post" action="/cards/<%=@card.slug%>">
-  <input id="hidden" type="hidden" name="_method" value="patch">
-
-  <p>Card Name: <input type="text" name="card[name]" value="<%=@card.name%>"></p>
-  <p>Manna Cost: <input type="text" name="card[manna_cost]" value="<%=@card.manna_cost%>"> Example: 2 Red 1 Colorless = 1RR</p>
-  <p>Value: $<input type="text" name="card[value]" value="<%=@card.value%>"></p>
-  <p>Quantity: <input type="number" name="card[quantity]" value="<%=@card.quantity%>"></p>
-
-<h4>Quality:</h4>
-  <%MagicCard.qualities.each do |quality|%>
-    <input type="radio" name="card[quality]" value="<%=quality%>" <%='checked' if @card.quality == quality %>> <%="#{quality}"%> </input>
-  <%end%>
-
-<h4>Foil:</h4>
-  <input type="radio" name="card[foil]" value=true <%='checked' if @card.foil == true %>> <%="Yes"%> </input>
-  <input type="radio" name="card[foil]" value=false<%='checked' if @card.foil == false %>> <%="No"%> </input>
-
-<h4>Color(s):</h4>
-  <%MagicCard.colors.each do |color|%>
-    <input type="radio" name="card[color]" value="<%=color%>" <%='checked' if @card.color == color %>> <%="#{color}"%> </input>
-  <%end%>
-
-  <h4>Super Type(s):</h4>
-    <%MagicCard.super_types.each do |super_type|%>
-      <input type="radio" name="card[super_types]" value="<%=super_type%>" <%='checked' if @card.super_types == super_type %>> <%="#{super_type}"%> </input>
-    <%end%>
-
-  <h4>Type(s):</h4>
-    <%MagicCard.types.each do |type|%>
-      <input type="radio" name="card[types]" value="<%=type%>" <%='checked' if @card.types == type %>> <%="#{type}"%> </input>
-    <%end%>
-
-  <h4>Rarity:</h4>
-    <%MagicCard.rarities.each do |rarity|%>
-      <input type="radio" name="card[rarity]" value="<%=rarity%>" <%='checked' if @card.rarity == rarity %>> <%="#{rarity}"%> </input>
-    <%end%>
-
-  <h4>Set: </h4>
-  <select name="card[set]">
-    <%MagicCard.sets.each do |set|%>
-    <option value="<%=set%>" name="card[set]" <%='selected' if @card.set == set %>><%="#{set}"%></option>
-    <%end%>
-  </select>
-
-  </br>
-  </br>
-
-  <input type="submit" value="Submit">
+<form method="get" action="/logout">
+  <input type="submit" value="Logout" style="float: right;">
 </form>
+
+<fieldset>
+  <legend><h2>Edit <%=@card.name.titlecase%>: </h2></legend>
+
+  <form method="post" action="/cards/<%=@card.slug%>">
+    <input id="hidden" type="hidden" name="_method" value="patch">
+
+    <h4>Card Name: <input type="text" name="card[name]" value="<%=@card.name%>"></h4>
+    <h4>Manna Cost: <input type="text" name="card[manna_cost]" value="<%=@card.manna_cost%>"> Example: 2 Red 1 Colorless = 1RR</h4>
+    <h4>Value: $<input type="text" name="card[value]" value="<%=@card.value%>"></h4>
+    <h4>Quantity: <input type="number" name="card[quantity]" value="<%=@card.quantity%>"></h4>
+
+    <h4>
+      Quality:
+      <%MagicCard.qualities.each do |quality|%>
+        <input type="radio" name="card[quality]" value="<%=quality%>" <%='checked' if @card.quality == quality %>> <%="#{quality}"%> </input>
+      <%end%>
+    </h4>
+
+    <h4>
+      Foil:
+      <input type="radio" name="card[foil]" value=true <%='checked' if @card.foil == true %>> <%="Yes"%> </input>
+      <input type="radio" name="card[foil]" value=false<%='checked' if @card.foil == false %>> <%="No"%> </input>
+    </h4>
+
+    <h4>
+      Color:
+      <%MagicCard.colors.each do |color|%>
+        <input type="radio" name="card[color]" value="<%=color%>" <%='checked' if @card.color == color %>> <%="#{color}"%> </input>
+      <%end%>
+    </h4>
+
+    <h4>
+      Super Type:
+      <%MagicCard.super_types.each do |super_type|%>
+        <input type="radio" name="card[super_types]" value="<%=super_type%>" <%='checked' if @card.super_types == super_type %>> <%="#{super_type}"%> </input>
+      <%end%>
+    </h4>
+
+    <h4>
+      Type:
+      <%MagicCard.types.each do |type|%>
+        <input type="radio" name="card[types]" value="<%=type%>" <%='checked' if @card.types == type %>> <%="#{type}"%> </input>
+      <%end%>
+    </h4>
+
+    <h4>
+      Rarity:
+      <%MagicCard.rarities.each do |rarity|%>
+        <input type="radio" name="card[rarity]" value="<%=rarity%>" <%='checked' if @card.rarity == rarity %>> <%="#{rarity}"%> </input>
+      <%end%>
+    </h4>
+
+    <h4>
+      Set:
+      <select name="card[set]">
+        <%MagicCard.sets.each do |set|%>
+        <option value="<%=set%>" name="card[set]" <%='selected' if @card.set == set %>><%="#{set}"%></option>
+        <%end%>
+      </select>
+    </h4>
+
+    <input type="submit" value="Submit">
+  </form>
+</fieldset>

@@ -1,23 +1,28 @@
-<h1> <%=@card.name%>: </h1>
-
-<form action="/cards/<%=@card.slug%>/edit" method="GET">
-
-  <p>Manna Cost: <%=@card.manna_cost%></p>
-  <p>Value: $<%=@card.value%></p>
-  <p>Quantity: <%=@card.quantity%></p>
-  <p>Quality: <%=@card.quality%></p>
-  <p>Foil: <%=@card.foil%></p>
-  <p>Color: <%=@card.color%></p>
-  <p>Super Type: <%=@card.super_types%></p>
-  <p>Types:<%=@card.types%></p>
-  <p>Rarity: <%=@card.rarity%></p>
-  <p>Set: <%=@card.set%></p>
-
-  <input type="submit" value="Edit Card">
+<form method="get" action="/logout">
+  <input type="submit" value="Logout" style="float: right;">
 </form>
 
-<form method="post" action="/cards/<%=@card.slug%>/delete">
-    <input id="hidden" type="hidden" name="_method" value="delete">
+<fieldset>
+  <legend><h2> <%=@card.name.titlecase%>: </h2></legend>
 
-  <input type="submit" value="Delete Deck">
-</form>
+  <form action="/cards/<%=@card.slug%>/edit" method="GET">
+
+    <h3>Manna Cost: <%=@card.manna_cost%></h3>
+    <h3>Value: $<%=@card.value%></h3>
+    <h3>Quantity: <%=@card.quantity%></h3>
+    <h3>Quality: <%=@card.quality%></h3>
+    <h3>Foil: <%=@card.foil ? "Yes" : "No" %></h3>
+    <h3>Color: <%=@card.color%></h3>
+    <h3>Super Type: <%=@card.super_types%></h3>
+    <h3>Types:<%=@card.types%></h3>
+    <h3>Rarity: <%=@card.rarity%></h3>
+    <h3>Set: <%=@card.set%></h3>
+
+    <input type="submit" value="Edit Card">
+  </form>
+
+  <form method="post" action="/cards/<%=@card.slug%>/delete">
+      <input id="hidden" type="hidden" name="_method" value="delete">
+    <input type="submit" value="Delete Deck">
+  </form>
+</fieldset>

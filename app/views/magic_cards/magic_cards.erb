@@ -1,5 +1,12 @@
-<h1>Cards: </h1>
+<form method="get" action="/logout">
+  <input type="submit" value="Logout" style="float: right;">
+</form>
 
-<% current_user.magic_cards.each do |card| %>
-  <a href=<%="/cards/#{card.slug}"%>><%=card.name%></a></br>
-<% end %>
+<fieldset>
+  <legend><h2><%=current_user.name.titlecase%>'s Cards: </h2></legend>
+
+  <% current_user.magic_cards.each do |card| %>
+    <a href=<%="/cards/#{card.slug}"%>><%=card.name%></a></br>
+  <% end %>
+
+</fieldset>
