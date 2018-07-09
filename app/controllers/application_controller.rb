@@ -6,7 +6,8 @@ class ApplicationController < Sinatra::Base
     set :public_folder, 'public'
     set :views, 'app/views'
     enable :sessions unless test?
-    set :session_secret, "secret"
+    set :session_secret, "sdfadlkjhgadsdsgadfgksahfnvlDSGAvavcdslkfASDfgdasgADSg"
+    register Sinatra::Flash
   end
 
   get '/' do
@@ -21,6 +22,12 @@ class ApplicationController < Sinatra::Base
     def current_user
       User.find(session[:user_id])
     end
+
+    def validate_user(object)
+      if object
+        object.user == current_user
+      end
+    end
   end
-  
+
 end

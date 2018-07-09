@@ -14,9 +14,11 @@ class UsersController < ApplicationController
         session[:user_id] = @user.id
         redirect "/users/#{@user.slug}"
       else
+        flash[:error] = "Invalid input, please try again."
         erb :'users/create_user'
       end
     else
+      flash[:error] = "Please make sure your password matches your confirmed password."
       erb :'users/create_user'
     end
   end
@@ -25,7 +27,7 @@ class UsersController < ApplicationController
     if !logged_in?
       erb :'/users/login'
     else
-      redirect "/users/#{current_user.name}"
+      redirect "/users/#{current_user.slug}"
     end
   end
 
@@ -35,6 +37,7 @@ class UsersController < ApplicationController
 			session[:user_id] = @user.id
       redirect "/users/#{@user.slug}"
     else
+      flash[:error] = "Invalid login information."
       redirect "/login"
     end
   end
@@ -50,8 +53,13 @@ class UsersController < ApplicationController
 
   get '/users/:slug' do
     @user = User.find_by_slug(params[:slug])
-    if logged_in? && @user.id == current_user.id
-      erb :'/users/show'
+    if logged_in?
+      if @user.id == current_user.id
+        erb :'/users/show'
+      else
+        flash[:error] = "You cannot view another user's profile."
+        redirect "/users/#{current_user.slug}"
+      end
     else
       redirect '/login'
     end
