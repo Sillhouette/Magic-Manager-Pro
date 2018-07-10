@@ -1,6 +1,7 @@
 class DecksController < ApplicationController
   get '/decks' do
     if logged_in?
+      10.times {u = current_user}
       erb :'/decks/decks'
     else
       flash[:error] = "You must log in to view your decks."
@@ -20,9 +21,9 @@ class DecksController < ApplicationController
   post '/decks' do
     if logged_in?
       if params[:deck_name] != ""
-       @deck = Deck.create(:name => params[:deck_name], :format => params[:deck_format], :user_id => current_user.id)
-       @deck.magic_card_ids = params[:cards]
-       @deck.save
+       current_user.decks.create(:name => params[:deck_name], :format => params[:deck_format], :magic_card_ids => params[:magic_card_ids])
+       #@deck.magic_card_ids = params[:cards]
+       #@deck.save
        redirect '/decks'
      else
        flash[:error] = "Your new deck must have a name."
@@ -142,7 +143,7 @@ class DecksController < ApplicationController
         redirect '/decks'
       else
         flash[:error] = "You can only delete your own decks."
-        "/decks/#{@deck.slug}"
+        redirect "/decks/#{@deck.slug}"
       end
     else
       flash[:error] = "You must be logged in to delete a deck."

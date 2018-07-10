@@ -20,7 +20,7 @@
     <fieldset>
       <legend><h3>Choose from your cards:</h3></legend>
         <%current_user.magic_cards.each do |card|%>
-          <input type="checkbox" name="cards[]" value="<%="#{card.id}"%>"> <%="#{card.name}"%> </input>
+          <input type="checkbox" name="magic_card_ids[]" value="<%="#{card.id}"%>"> <%="#{card.name}"%> </input>
         <%end%>
     </fieldset>
 
